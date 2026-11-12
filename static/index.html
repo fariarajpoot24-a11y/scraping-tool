@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Site Survey</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700&family=Public+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <main class="wrap">
+    <header class="top">
+      <h1>Site Survey</h1>
+      <p>Paste a website address to see its pages, services, purpose and contact details.</p>
+    </header>
+
+    <form id="scan-form" class="scan" novalidate>
+      <label class="field">
+        <span>Website address</span>
+        <input id="url" name="url" type="text" inputmode="url" autocomplete="off"
+               placeholder="example.com" required>
+      </label>
+      <label class="field small">
+        <span>Pages to read</span>
+        <select id="max-pages">
+          <option value="3">3</option>
+          <option value="6" selected>6</option>
+          <option value="10">10</option>
+          <option value="15">15</option>
+        </select>
+      </label>
+      <button id="scan-btn" type="submit">Scan site</button>
+      <div class="bar" id="bar" hidden></div>
+    </form>
+
+    <p id="status" class="status" role="status" aria-live="polite"></p>
+
+    <section id="results" hidden>
+      <div class="actions">
+        <button type="button" id="copy-btn" class="ghost">Copy JSON</button>
+        <button type="button" id="download-btn" class="ghost">Download JSON</button>
+      </div>
+      <div id="output"></div>
+    </section>
+  </main>
+  <script src="/static/script.js"></script>
+</body>
+</html>
