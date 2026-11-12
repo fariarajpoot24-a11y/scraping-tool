@@ -1,5 +1,7 @@
+
 """Flask backend: serves the web page and exposes POST /api/scrape."""
 
+import os
 import requests
 from flask import Flask, jsonify, request, send_from_directory
 
@@ -17,6 +19,7 @@ def index():
 def api_scrape():
     data = request.get_json(silent=True) or {}
     url = str(data.get("url", "")).strip()
+
     try:
         max_pages = max(1, min(15, int(data.get("max_pages", 6))))
     except (TypeError, ValueError):
@@ -39,4 +42,5 @@ def api_scrape():
 
 
 if __name__ == "__main__":
-    app.run(host="127.0.0.1", port=5000, debug=True)
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
